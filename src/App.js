@@ -5,8 +5,7 @@ import mugshots from "./images/mugshots"
 import Container from "react-bootstrap/Container"
 import PictureCard from './components/pictureBox'
 import CardGroup from 'react-bootstrap/CardGroup';
-//import ScoreButton from './components/score'
-
+import swal from 'sweetalert2'
 
 class App extends Component {
     state = {
@@ -32,7 +31,9 @@ class App extends Component {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         };
-
+        this.setState({
+            mugshots: array
+        })
         return array;
     };
 
@@ -42,16 +43,21 @@ class App extends Component {
         this.setState({currentID:id}, this.checkWin)
     }
 
-    checkWin = (id) => {
+    resetState = ()=>{
+        this.setState({
+            currentID: 0,
+            clickedMugshots: [0],
+            score: 0
+        })
+    }
+
+    checkWin = () => {
         const {clickedMugshots, currentID} = this.state;
         console.log(clickedMugshots)
 
         if (clickedMugshots.includes(currentID)){
-         //   alert("You lose!")
-            this.setState({
-                score:0,
-                clickedMugshots:[]
-            })
+            swal.fire("Oh no...", "You clicked that image already. Close this message to try again.", "error")
+            this.resetState()
         }else{
         //    console.log("win")
             var joined = this.state.clickedMugshots;
@@ -61,8 +67,10 @@ class App extends Component {
                 clickedMugshots: joined
             }, ()=>{
                 if (clickedMugshots.length === 9){
-                    alert("You win!")
+                    swal.fire("Congratulations!", "You won the game! Click 'ok' to start again.", "success")
+                    this.resetState()
                 }
+                this.randomShuffle(mugshots)
             })
             console.log(this.state.score)
             console.log(`mugs length: ${this.state.clickedMugshots.length}`)
