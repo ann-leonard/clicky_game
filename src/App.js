@@ -13,7 +13,6 @@ class App extends Component {
         currentID: 0,
         clickedMugshots: [0],
         score: 0,
-        winScore: 9
     }
 
     randomShuffle = (array) => {
@@ -66,7 +65,7 @@ class App extends Component {
                 score: this.state.score+1,
                 clickedMugshots: joined
             }, ()=>{
-                if (clickedMugshots.length === 9){
+                if (clickedMugshots.length === 11){
                     swal.fire("Congratulations!", "You won the game! Click 'ok' to start again.", "success")
                     this.resetState()
                 }
