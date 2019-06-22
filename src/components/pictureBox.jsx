@@ -14,7 +14,7 @@ class PictureCard extends Component {
         return ( 
             <div>
             
-            <Card className="ml-4 mb-1" bg="dark" text="white" style={{ width: '18rem' }}>
+            <Card className="m-3" bg="dark" text="white" style={{ width: '18rem' }}>
             <Card.Body>
                 <img 
                     src={this.props.src} 

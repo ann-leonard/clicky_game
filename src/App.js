@@ -80,7 +80,7 @@ class App extends Component {
     render() {
         return (<div>
             <Jumbo score={this.state.score}></Jumbo>
-            <Container>
+            <Container fluid className="ml-5">
                 <CardGroup className="ml-5">
                     {this.state.mugshots.map(mugshot => (
                         <PictureCard

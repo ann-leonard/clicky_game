@@ -8,4 +8,5 @@ body{
     background-image: url(./policeBackground.jpeg);
     background-position: center;
     background-size: cover;
+    overflow-x: hidden
 }
